@@ -11,8 +11,12 @@ h3, #siteName, #userQuestion {
 	margin-left: 100px !important;
 }
 
+#loginBtn{
+	margin-left: 100px !important;
+}
+
 #choiceBtn {
-	margin-left: 10px !important;
+	left: 10px !important;
 }
 
 #choices {
