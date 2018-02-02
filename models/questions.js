@@ -34,8 +34,13 @@ module.exports = function(sequelize, DataTypes) {
 		isComplete: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
+		},
+		questionID: {
+			type: DataTypes.INTEGER,
+			primaryKey: true
 		}
 	});
 
+	return NewQuestion;
 
 };
