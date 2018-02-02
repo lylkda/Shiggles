@@ -85,7 +85,7 @@ CREATE TABLE compQuestions (
 	winner VARCHAR(75) NOT NULL
 );
 
-CREATE TABLE questions (
+CREATE TABLE NewQuestion (
 	question VARCHAR(200) NOT NULL,
 	answer1 VARCHAR(75) NOT NULL,
 	answer2 VARCHAR(75) NOT NULL,
