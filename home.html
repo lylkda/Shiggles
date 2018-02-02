@@ -11,41 +11,7 @@
 	<script src="semantic/dist/semantic.min.js"></script>
 </head>
 <body>
-	<h1 id="siteName">
-		Shiggle-Shiggles Questions
-		<!--Log in button/modal-->
-		<a class="ui button primary" id="test"> 
-		Login </a>  
-		<div class="ui modal test">
-			<div class="ui middle aligned center aligned grid">
-				<div class="column">
-					<h2 class="ui blue image header">
-						<!-- <img src="assets/images/logo.png" class="image"> -->
-						<div class="content">
-							Log-in to your account
-						</div>
-					</h2>
-					<form class="ui large form">
-						<div class="ui  segment">
-							<div class="field">
-								<div class="ui left icon input">
-									<i class="user icon"></i>
-									<input type="text" name="email" placeholder="E-mail address">
-								</div>
-							</div>
-							<div class="field">
-								<div class="ui left icon input">
-									<i class="lock icon"></i>
-									<input type="password" name="password" placeholder="Password">
-								</div>
-							</div>
-							<div class="ui fluid large primary submit button">Login</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</h1>
+	<h1 id="siteName">Shiggle-Shiggles Questions</h1>
 	<div class="ui raised very padded text container segment">
 		<h2 class="ui header">Leaderboard</h2>
 		<div class="ui ordered list">
@@ -65,14 +31,4 @@
 		<button class="ui blue button" id="historyBtn">History</button>
 	</div>
 </body>
-<script type="text/javascript">
-	$(function(){
-      $("#test").click(function(){
-        $(".test").modal('show');
-      });
-      $(".test").modal({
-        closable: true
-      });
-    });
-</script>
 </html>
