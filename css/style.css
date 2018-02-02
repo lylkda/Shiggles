@@ -1,0 +1,24 @@
+body {
+	background-color: black;
+}
+
+h3, #siteName, #userQuestion {
+	text-align: center;
+}
+
+#submitBtn, #voteBtn, #guessBtn, #historyBtn {
+	color: black !important;
+	margin-left: 100px !important;
+}
+
+#choiceBtn {
+	margin-left: 10px !important;
+}
+
+#choices {
+	padding-left: 240px !important; 
+}
+
+.column {
+	border-right: 5px black !important;
+}
