@@ -24,8 +24,10 @@
     "leaderboard": "0.0.9",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
+    "mysql2": "^1.5.1",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
-    "semantic-ui": "^2.2.14"
+    "semantic-ui": "^2.2.14",
+    "sequelize": "^4.32.2"
   }
 }
