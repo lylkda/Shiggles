@@ -1,13 +1,21 @@
 body {
-	background-color: black;
+	background-color: #DCC7AA !important;
+}
+
+#leadertitle, .item {
+	color: #F7C331 !important;
 }
 
 h3, #siteName, #userQuestion {
 	text-align: center;
 }
 
+#leaderboard {
+	background-color: #687A8F !important;
+}
+
 #submitBtn, #voteBtn, #guessBtn, #historyBtn {
-	color: black !important;
+	color: black;
 	margin-left: 100px !important;
 }
 
