@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home Page</title>
+	<title>Voting Page</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 	<script
@@ -11,17 +11,18 @@
 	<script src="semantic/dist/semantic.min.js"></script>
 </head>
 <body>
+	<h4 id="userQuestion">This page is where you choose which answer you personally like more</h4>
 	<h2 id="userQuestion">Your Question Here</h2>
 	<div class="ui two column very relaxed grid" id="choices">
 		<div class="column">
 			<h2>Choice 1</h2>
-			<button class="ui blue button" id="choiceBtn">Vote</button>
+			<button class="ui toggle button">Vote</button>
 		</div>
 		<div class="ui vertical divider">
 		</div>
 		<div class="column">
 			<h2>Choice 2</h2>
-			<button class="ui blue button" id="choiceBtn">Vote</button>
+			<button class="ui toggle button">Vote</button>
 		</div>
 	</div>
 </body>

@@ -20,7 +20,7 @@ h3, #siteName, #userQuestion {
 }
 
 #loginBtn{
-	margin-left: 100px !important;
+	text-align: center !important;
 }
 
 #choiceBtn {

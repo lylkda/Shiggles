@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Voting Page</title>
+	<title>Guessing Page</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 	<script
@@ -10,18 +10,19 @@
 	crossorigin="anonymous"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
 </head>
-<body>
+<body id="guessingPage">
+	<h4 id="userQuestion">This is the page where you choose which choice you think will win</h4>
 	<h2 id="userQuestion">Your Question Here</h2>
 	<div class="ui two column very relaxed grid" id="choices">
 		<div class="column">
 			<h2>Choice 1</h2>
-			<button class="ui blue button" id="choiceBtn">Vote</button>
+<button class="ui toggle button">Vote</button>
 		</div>
 		<div class="ui vertical divider">
 		</div>
 		<div class="column">
 			<h2>Choice 2</h2>
-			<button class="ui blue button" id="choiceBtn">Vote</button>
+<button class="ui toggle button">Vote</button>
 		</div>
 	</div>
 </body>
