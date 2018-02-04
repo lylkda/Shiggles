@@ -34,3 +34,16 @@ h3, #siteName, #userQuestion {
 .column {
 	border-right: 5px black !important;
 }
+
+/*Submit page*/
+#questionForm {
+	text-align: center !important;
+}
+
+#formInput {
+	padding-top: 25px !important;
+}
+
+#questionBtn {
+	margin-top: 250px !important;
+}
