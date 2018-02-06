@@ -1,24 +1,29 @@
-var express = require("express");
-var bodyParser = require("body-parser");
+// Dependencies
 
-var PORT = process.env.PORT || 3001;
+const express = require("express");
+const bodyParser = require("body-Parser");
+const exphbs = require("express-handlebars");
 
-var app = express();
+let app = express();
+let PORT = process.env.PORT || 3000;
+let db = require("./models");
 
-app.use(express.static("public"));
-
-app.use(bodyParser.urlencoded({ extended: false }));
+// Body parsing
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var exphbs = require("express-handlebars");
-
+// Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+app.use(express.static("public"));
 
-var routes = require("./controllers/shiggles-controller.js");
+// Routes
+require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
 
-app.use('/', routes);
-
-app.listen(PORT, function() {
-    console.log("Listening on PORT " + PORT);
+// Start app
+db.sequelize.sync().then(function() {
+	app.listen(PORT, function() {
+		console.log("Now listening on: " + PORT);
+	});
 });

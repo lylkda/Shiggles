@@ -1,36 +1,62 @@
-<h1>Shiggle-Shiggles!</h1>
+{{> navbar}}
 
-<ul>
-  {{#each questions}}
-    {{#unless this.user}}
-            <div>
-              <form action="/shiggles/{{this.id}}" method="POST">
-                <button type="submit">{{this.question-input}}</button>
-              </form>
-            </div>
-    {{/unless}}
-  {{/each}}
-</ul>
+<main>
+    <div class="section">
+      <div class="container">
+        <h1 class="header center cyan-text text-lighten-2">Shiggle Shiggles</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">Decision making with a twist!</h5>
+        </div>
+        <div class="row center">
+          <a href="#login" class="btn-large waves-effect waves-light cyan lighten-1">Join now!</a>
+        </div>
 
-<ul>
-  {{#each questions}}
-    {{#if this.user}}
-    <div>
-      <div>
-        {{this.question-input}}
+
       </div>
     </div>
-    {{/if}}
-  {{/each}}
-</ul>
 
-<h2>Add a Question</h2>
-<form action="/shiggles" method="POST">
 
-  <div class="form-group">
-    <label>Question:</label>
-    <input type="text" id="name" name="question-input">
-  </div>
+    <div class="container">
 
-  <button type="submit">Add Question</button>
-</form>
+        <div class="row">
+            <br>
+            <br>
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center cyan-text">
+                     <i class="material-icons">favorite</i>
+                    </h2>
+                    <h5 class="center">Blah</h5>
+                    <p class="light center">Blah blah blah</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center cyan-text">
+                        <i class="material-icons">mood</i>
+                    </h2>
+                    <h5 class="center">Blah</h5>
+                    <p class="light center">Blah blah blah</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center cyan-text">
+                        <i class="material-icons">chat</i>
+                    </h2>
+                    <h5 class="center">Blah</h5>
+                    <p class="light center">Blah blah blah</p>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <br>
+
+    </div>
+</main>
+
+
+{{> footer}}
