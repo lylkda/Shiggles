@@ -12,6 +12,10 @@ var db = require('./index.js');
         username: {
             type: db.Sequelize.STRING,
             allowNull: false,
+        },
+        points: {
+            type: db.Sequelize.INTEGER,
+            defaultValue: 0
         }
     })
 

@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Home Page</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<script
 	src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -27,6 +27,15 @@
 		<button class="ui blue button" id="voteBtn">Vote</button>
 		<button class="ui blue button" id="guessBtn">Guess</button>
 		<button class="ui blue button" id="historyBtn">History</button>
+		<a class="ui blue button" href="/auth/google">Sign in</a>
 	</div>
 </body>
 </html>
+<script>
+
+var points = 0;
+$('#guessBtn').on("click", function(){
+	points++;
+	alert(points)
+});
+</script>

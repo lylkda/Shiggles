@@ -1,0 +1,32 @@
+<h1>Shiggle-Shiggles!</h1>
+
+<ul>
+    {{#each questions}} {{#unless this.user}}
+    <div>
+        <form action="/shiggles/{{this.id}}" method="POST">
+            <button type="submit">{{this.question-input}}</button>
+        </form>
+    </div>
+    {{/unless}} {{/each}}
+</ul>
+
+<ul>
+    {{#each questions}} {{#if this.user}}
+    <div>
+        <div>
+            {{this.question-input}}
+        </div>
+    </div>
+    {{/if}} {{/each}}
+</ul>
+
+<h2>Add a Question</h2>
+<form action="/shiggles" method="POST">
+
+    <div class="form-group">
+        <label>Question:</label>
+        <input type="text" id="name" name="question-input">
+    </div>
+
+    <button type="submit">Add Question</button>
+</form>

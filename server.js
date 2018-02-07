@@ -28,13 +28,16 @@ passport.use(new GoogleStrategy({
     function (accessToken, refreshToken, profile, done) {
         User.findOne({
             where: { googleId: profile.id}
-        }).then( function (err, user) {
+        }, function(err, user){
             return done(err, user);
-        });
-        // let users = {
-        //     username: "username",
-        // }
-        // return done(null, users);
+            console.log("user");
+            console.log(user);
+        })
+        // .then( function (err, user) {
+        //     console.log("user");
+        //     console.log(user);
+        //     return done(err, user);
+        // });
     }
 ));
 
@@ -53,6 +56,7 @@ passport.deserializeUser(function (user, callback) {
 
 // Import routes and give the server access to them.
 var routes = require("./controllers/login.js");
+
 
 
 app.use('/', routes);

@@ -5,6 +5,22 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
+var path = require('path');
+router.get("/", function (req, res) {
+    // question.all(function (data) {
+    //     var hbsObject = {
+    //         questions: data
+    //     };
+    //     console.log(hbsObject);
+    //     res.render("index", hbsObject);
+    // });
+    res.sendFile(path.join(__dirname, "../public/home.html"));
+});
+
+router.get("/home", function (req, res){
+    res.sendFile(path.join(__dirname, "../public/guess.html"))
+})
+
 // GET /auth/google
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  The first step in Google authentication will involve
@@ -19,10 +35,10 @@ router.get('/auth/google',
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 router.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
+    passport.authenticate('google', { failureRedirect: '/' }), 
     function (req, res) {
         console.log(req)
-        res.redirect('/');
+        res.redirect('http://localhost:3000/home');
     });
 
 
