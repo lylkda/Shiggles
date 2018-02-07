@@ -4,10 +4,15 @@ var db = require('./index.js');
 
 
     var User = db.sequelize.define("User", {
-        googleId: {
+        id: {
             type: db.Sequelize.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
+        },
+        googleId: {
+            type: db.Sequelize.STRING,
+            allowNull: false,
         },
         username: {
             type: db.Sequelize.STRING,
@@ -19,9 +24,9 @@ var db = require('./index.js');
         }
     })
 
-    User.sync({force: true}).then(()=>{
+    // User.sync({force: true}).then(()=>{
 
-    })
+    // })
 
     module.exports = User;
 

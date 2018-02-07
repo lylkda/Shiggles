@@ -26,20 +26,37 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/callback"
 },
     function (accessToken, refreshToken, profile, done) {
-        User.findOne({
-            where: { googleId: profile.id}
-        }, function(err, user){
-            return done(err, user);
-            console.log("user");
-            console.log(user);
-        })
-        // .then( function (err, user) {
+        User.findOrCreate({
+            where: { googleId: profile.id},
+            defaults: { username: profile.displayName}
+        // }, function(err, user){
+        //     return done(err, user);
         //     console.log("user");
         //     console.log(user);
-        //     return done(err, user);
-        // });
+
+        })
+        .then( function (user, err) {
+            console.log(user);
+            return done(user, err);
+        });
     }
 ));
+
+// test = function(){
+//     User.findOrCreate({
+//         where: { googleId: "sdf" },
+//         defaults: { username: "profile.displayName" }
+//         // }, function(err, user){
+//         //     return done(err, user);
+//         //     console.log("user");
+//         //     console.log(user);
+//     })
+//         .then(function (user, err) {
+//             console.log(user);
+//             // return done(user, err);
+//         });
+// }
+// test();
 
 app.use(passport.initialize());
 app.use(passport.session());
