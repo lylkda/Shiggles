@@ -30,7 +30,7 @@ router.get('/auth/google/callback',
         res.redirect('http://localhost:3000/home');
     });
 
-app.get('/logout', function (req, res) {
+router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });

@@ -29,34 +29,14 @@ passport.use(new GoogleStrategy({
         User.findOrCreate({
             where: { googleId: profile.id},
             defaults: { username: profile.displayName}
-        // }, function(err, user){
-        //     return done(err, user);
-        //     console.log("user");
-        //     console.log(user);
-
         })
         .then( function (user, err) {
-            //console.log('user', user);
             return done(err,user);
         });
     }
 ));
 
-// test = function(){
-//     User.findOrCreate({
-//         where: { googleId: "sdf" },
-//         defaults: { username: "profile.displayName" }
-//         // }, function(err, user){
-//         //     return done(err, user);
-//         //     console.log("user");
-//         //     console.log(user);
-//     })
-//         .then(function (user, err) {
-//             console.log(user);
-//             // return done(user, err);
-//         });
-// }
-// test();
+
 
 app.use(passport.initialize());
 app.use(passport.session());
