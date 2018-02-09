@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "dor3mon1",
+    "password": null,
     "database": "shiggles_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
