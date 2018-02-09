@@ -37,7 +37,8 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		questionID: {
 			type: DataTypes.INTEGER,
-			primaryKey: true
+			primaryKey: true,
+			autoIncrement: true
 		}
 	});
 
