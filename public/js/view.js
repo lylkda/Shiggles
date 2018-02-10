@@ -1,15 +1,10 @@
 $(document).ready(function(){
 
-	//inputs needed to form new question
-	let $newQuestionInput = $('#new-q');
-	let $newAnswer1 = $('#newQanswer1');
-	let $newAnswer2 = $('#newQanswer2');
-
 	//populates current question
 	let $currentQuestion = $('#currentQuestion');
 
 	//clicking the buttons
-	$(document).on("submit", "#submitQuestion", insertQuestion);
+	$(document).on("click", "#submitQuestion", insertQuestion);
 
 	// initial questions array
 	var questions = [];
@@ -52,13 +47,18 @@ $(document).ready(function(){
 	//submitting a new questions
 	function insertQuestion (event) {
 		event.preventDefault();
+		//inputs needed to form new question
+		let $newQuestionInput = $('#new-q');
+		let $newAnswer1 = $('#newQanswer1');
+		let $newAnswer2 = $('#newQanswer2');
 		console.log("submit button clicked!");
+		console.log($newQuestionInput.val());
 		var question = {
 			question: $newQuestionInput.val().trim(),
 			answer1: $newAnswer1.val().trim(),
 			answer2: $newAnswer2.val().trim()
 		};
-		$.post("/api/questions", NewQuestions, getQuestions);
+		$.post("/api/questions", question);
 		//empty out those entry fields
 		$newQuestionInput.val("");
 		$newAnswer1.val("");

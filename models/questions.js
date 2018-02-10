@@ -2,21 +2,21 @@ module.exports = function(sequelize, DataTypes) {
 	let NewQuestion = sequelize.define("NewQuestion", {
 		question: {
 			type: DataTypes.STRING,
-			allowNull: false, 
+			// allowNull: false, 
 			validate: {
 				len: [1, 200]
 			}
 		},
 		answer1: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			// allowNull: false,
 			validate: {
 				len: [1, 75]
 			}
 		},
 		answer2: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			// allowNull: false,
 			validate: {
 				len: [1, 75]
 			}
@@ -26,10 +26,12 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: false
 		},
 		a1Votes: {
-			type: DataTypes.INTEGER
+			type: DataTypes.INTEGER,
+			defaultValue: 0
 		},
 		a2Votes: {
-			type: DataTypes.INTEGER
+			type: DataTypes.INTEGER,
+			defaultValue: 0
 		},
 		isComplete: {
 			type: DataTypes.BOOLEAN,
