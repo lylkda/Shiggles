@@ -17,23 +17,25 @@ module.exports = function (app) {
       where: {
         isCurrent: true
       }
-    }).then((NewQuestions) => {
-      // console.log(dbNewQuestion.dataValues);
-      res.render('vote', NewQuestions[0].dataValues);
+    }).then((result) => {
+      console.log(result[0].dataValues);
+      res.render('vote', result[0].dataValues);
     });
   });
 
   app.post('/vote', function (req, res) { 
-    var questionId = req.body.questionId;
+    var questionId = parseInt(req.body.questionId); 
     var answer = req.body.answer;
 
     NewQuestions.findAll({
       where: {
         questionID: questionId
       }
-    }).then((NewQuestions) => {
+    }).then((result) => {
       // console.log('NewQuestions', NewQuestions);
-      var dbQuestion = NewQuestions[0].dataValues;
+      console.log("LOOKING");
+      console.log(result[0].dataValues);
+      var dbQuestion = result[0].dataValues;
       var updateObj = {};
       if(answer === '1') { updateObj.a1Votes = dbQuestion.a1Votes + 1; }
       else { updateObj.a2Votes = dbQuestion.a2Votes + 1 }
@@ -42,38 +44,51 @@ module.exports = function (app) {
       console.log(dbQuestion, updateObj);
 
         //closes current voting and finds a new question
+        var nextQuestion = false;
         if(dbQuestion.a2Votes + dbQuestion.a1Votes === 4) {
+          nextQuestion = true;
           updateObj.isComplete = true;
           updateObj.isCurrent = false;
 
         //finds new question once current question is completed
-        NewQuestions.findOne({
-          where: { 
-            isComplete: 0,
-            questionID: { [Sequelize.Op.ne]: questionId } }
-          }).then((newQ) => {
-            console.log('newQ', newQ);
-            NewQuestions.update({
-              isCurrent: true
-            },
-            { where: { questionID: newQ[0].dataValues.questionID } });
-          });
-        }
+      }
         //updates the new DB question
         NewQuestions.update(updateObj,
         {
           where: { questionID: questionId}
         }).then((updatedDbQuestion) => {
-          console.log('updatedDbQuestion', updatedDbQuestion);
-          console.log(req, questionId, answer);
-          res.render('vote', NewQuestions[0].dataValues);
+          // console.log('updatedDbQuestion', updatedDbQuestion);
+          if (nextQuestion) {
+            NewQuestions.findOne({
+              where: { 
+                isComplete: 0,
+                }
+              }).then((newQ) => {
+                console.log("LOOK HERE");
+                console.log('newQ', newQ[0]);
+                NewQuestions.update({
+                  isCurrent: true
+                },
+                { where: { questionID: newQ.dataValues.questionID } 
+              });
+              });
+
+            }
+          // console.log(req, questionId, answer);
+          // res.render('vote', updatedDbQuestion.dataValues);
+          res.redirect("/thanks"); 
+        
         });
 
-    });
+      });
   });
 
   app.get('/guess', function (req, res) {
     res.render('guess');
+  });
+
+   app.get('/thanks', function (req, res) {
+    res.render('thanks');
   });
 
   app.get('/history', function (req, res) {
