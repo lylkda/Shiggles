@@ -1,5 +1,5 @@
 var passport = require('passport');
-let NewQuestions = require("./../models/questions.js");
+let NewQuestions = require("../models/questions.js");
 const Sequelize = require('Sequelize');
 
 module.exports = function (app) {
@@ -36,10 +36,28 @@ module.exports = function (app) {
       var dbQuestion = NewQuestions[0].dataValues;
       var updateObj = {};
       if(answer === '1') { updateObj.a1Votes = dbQuestion.a1Votes + 1; }
-      else { updateObj.a2Votes = dbQuestion.a2Votes + 1 }
+      else { updateObj.a2Votes === dbQuestion.a2Votes + 1 }
 
-        console.log("before vote applied");
+        console.log("before vote applied")
       console.log(dbQuestion, updateObj);
+
+      //updates votes into current question
+      function updater (NewQuestions) {
+        NewQuestions.update({
+          a1Votes: updateObj.a1Votes,
+          a2Votes: updateObj.a2Votes
+        },
+        {
+          where: {
+            isCurrent: true
+          }
+        }).then((NewQuestions) => {
+
+        //checks if vote has been entered
+        console.log("after vote applied")
+        console.log(dbQuestion.a1Votes);
+        console.log(updateObj.a1Votes);
+
 
         //closes current voting and finds a new question
         if(dbQuestion.a2Votes + dbQuestion.a1Votes === 4) {
@@ -56,9 +74,9 @@ module.exports = function (app) {
             NewQuestions.update({
               isCurrent: true
             },
-            { where: { questionID: newQ[0].dataValues.questionID } });
+            { where: { questionID: newQ[0].questionID } });
           });
-        }
+
         //updates the new DB question
         NewQuestions.update(updateObj,
         {
@@ -68,6 +86,13 @@ module.exports = function (app) {
           console.log(req, questionId, answer);
           res.render('vote', NewQuestions[0].dataValues);
         });
+
+      } //closes if statement
+    });
+      }
+      updater();
+
+
 
     });
   });

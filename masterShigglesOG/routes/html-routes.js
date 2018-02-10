@@ -1,5 +1,5 @@
 var passport = require('passport');
-let NewQuestions = require("./../models/questions.js");
+let NewQuestions = require("../models/questions.js");
 const Sequelize = require('Sequelize');
 
 module.exports = function (app) {
@@ -17,9 +17,9 @@ module.exports = function (app) {
       where: {
         isCurrent: true
       }
-    }).then((NewQuestions) => {
-      // console.log(dbNewQuestion.dataValues);
-      res.render('vote', NewQuestions[0].dataValues);
+    }).then((dbNewQuestion) => {
+      console.log(dbNewQuestion.dataValues);
+      res.render('vote', dbNewQuestion[0].dataValues);
     });
   });
 
@@ -31,45 +31,40 @@ module.exports = function (app) {
       where: {
         questionID: questionId
       }
-    }).then((NewQuestions) => {
-      // console.log('NewQuestions', NewQuestions);
-      var dbQuestion = NewQuestions[0].dataValues;
+    }).then((dbNewQuestion) => {
+      console.log('dbNewQuestion', dbNewQuestion);
+      var dbQuestion = dbNewQuestion[0].dataValues;
       var updateObj = {};
       if(answer === '1') { updateObj.a1Votes = dbQuestion.a1Votes + 1; }
       else { updateObj.a2Votes = dbQuestion.a2Votes + 1 }
 
-        console.log("before vote applied");
-      console.log(dbQuestion, updateObj);
-
-        //closes current voting and finds a new question
+console.log(dbQuestion, updateObj);
         if(dbQuestion.a2Votes + dbQuestion.a1Votes === 4) {
           updateObj.isComplete = true;
           updateObj.isCurrent = false;
 
-        //finds new question once current question is completed
-        NewQuestions.findOne({
-          where: { 
-            isComplete: 0,
-            questionID: { [Sequelize.Op.ne]: questionId } }
+          NewQuestions.findOne({
+            where: { questionID: { [Sequelize.Op.ne]: questionId } }
           }).then((newQ) => {
             console.log('newQ', newQ);
             NewQuestions.update({
               isCurrent: true
             },
-            { where: { questionID: newQ[0].dataValues.questionID } });
+            { where: { questionID: newQ[0].questionID } });
           });
         }
-        //updates the new DB question
+        
+
         NewQuestions.update(updateObj,
         {
           where: { questionID: questionId}
         }).then((updatedDbQuestion) => {
           console.log('updatedDbQuestion', updatedDbQuestion);
-          console.log(req, questionId, answer);
-          res.render('vote', NewQuestions[0].dataValues);
+          //console.log(req, questionId, answer);
+          res.render('vote');
         });
 
-    });
+      });
   });
 
   app.get('/guess', function (req, res) {
