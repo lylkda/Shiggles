@@ -25,14 +25,6 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
 		},
-		a1Votes: {
-			type: DataTypes.INTEGER,
-			defaultValue: 0
-		},
-		a2Votes: {
-			type: DataTypes.INTEGER,
-			defaultValue: 0
-		},
 		isComplete: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false

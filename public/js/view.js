@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 	//grabs current question to database
 	function getQuestions() {
-		$.get("/api/questions", function(data) {
+		$.get("/api/current", function(data) {
 			questions = data;
 			initialQuestion();
 		});
@@ -64,4 +64,8 @@ $(document).ready(function(){
 		$newAnswer1.val("");
 		$newAnswer2.val("");
 	}	
+
+	function completed () {
+		
+	}
 })

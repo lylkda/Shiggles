@@ -6,9 +6,6 @@ const exphbs = require("express-handlebars");
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const sequelize = require('sequelize');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const RedisStore = require('connect-redis')(session);
 
 let app = express();
 let PORT = process.env.PORT || 3000;
@@ -41,15 +38,6 @@ passport.use(new GoogleStrategy({
 	}
 ));
 
-app.use(cookieParser());
-app.use(session({ 
-	secret: 'cookie_secret',
-	name: 'shiggle', 
-	store: new RedisStore({ host: '127.0.0.1', port: 6379 }),
-	proxy: true,
-	resave: true,
-	saveUninitialized: true
-}));
 app.use(passport.initialize());
 app.use(passport.session());
 

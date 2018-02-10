@@ -1,0 +1,27 @@
+{{> usernavbar}}
+
+  <main>
+	<h1 class="header center cyan-text text-lighten-2" id="userQuestion">{{question}}</h2>
+    <br>
+    <br>
+    <div class="container" id="loginBtn">
+        <div class="center row">
+            <form method="POST" action="/vote">
+            <input type='hidden' name='questionId' value='{{questionID}}' />
+            <input name='answer' value='1' type='hidden' />
+            <div class="col s6">
+                <input type="submit" value='{{answer1}}' class="cyan waves-effect waves-light btn" />
+            </div>
+            </form>
+            <form method="POST" action="/vote">
+            <input type='hidden' name='questionId' value='{{questionID}}' />
+            <input name='answer' value='2' type='hidden' />
+            <div class="col s6">
+                <input type='submit' value='{{answer2}}' class="cyan waves-effect waves-light btn" />
+            </div>
+            </form>
+        </div>
+    </div>
+  </main>
+
+{{> footer}}

@@ -1,9 +1,12 @@
 let db = require("../models");
+let NewQuestions = require("../models/questions.js");
 
 module.exports = (app)=> {
-	//GET the current question
+
 	app.get("/api/current/", (req, res) => {
-		db.NewQuestion.findAll({
+		console.log(db.NewQuestion, db.NewQuestions);
+		console.log(db.User);
+		NewQuestions.findAll({
 			where: {
 				isCurrent: true
 			}
@@ -49,6 +52,6 @@ module.exports = (app)=> {
 			where: {isCurrent: true}
 		}).then((dbNewQuestion) => {
 			res.json(dbNewQuestion)
-		};
+		});
 	});
 };
